@@ -8,7 +8,7 @@ app.use(clerkMiddleware());
 
 app.use(express.json());
 app.use(cors({
-  origin: process.env.VITE_FRONTEND_URL || 'http://localhost:5173',
+  origin: 'https://rating-system-frontend.vercel.app',
   credentials: true,
 }));
 
