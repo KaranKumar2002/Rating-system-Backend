@@ -79,12 +79,7 @@ const newReview = async (req, res) => {
 const getReview = async (req, res) => {
   try {
     const { id } = req.params; // restaurantId
-    const auth = getAuth(req);
-
-    if (!auth.userId) {
-      return res.status(401).json({ error: 'Unauthorized' });
-    }
-
+    
     const review = await Rating.find({ restaurantId: id });
     const restaurantDetails = await restaurant.findById(id)
     return res.status(200).json({ reviews: review, restaurant: restaurantDetails , message: 'Reviews fetched successfully' });
