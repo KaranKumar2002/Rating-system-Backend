@@ -1,6 +1,7 @@
 import  restaurant from '../Model/Restaurant.model.js';
 import fileUpload from '../utils/cloudinary.js';
 const newRestaurant = async (req, res) => {
+  const restaurantData = {};
   try {
     
     const { name, location, cuisine } = req.body;
@@ -15,20 +16,15 @@ const newRestaurant = async (req, res) => {
 
    console.log(imageUploadResult);
 
-
-
-    const restaurantData = {
-      name,
-      location,
-      cuisine,
-      image: imageUploadResult || '',
-    };
-
+   restaurantData.name = name;
+   restaurantData.location = location;
+   restaurantData.cuisine = cuisine;
+   restaurantData.image = imageUploadResult || '';
 
     const createdRestaurant = await restaurant.create(restaurantData);
     return res.status(201).json({ message: 'Restaurant created successfully' , restaurant: restaurantData });
   } catch (error) {
-    console.error('Error creating restaurant:', error);
+    console.error('Error creating restaurant:', error, restaurantData);
     return res.status(500).json({ error: 'Failed to create restaurant' });
   }
 }
