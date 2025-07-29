@@ -33,9 +33,9 @@ const newReview = async (req, res) => {
   try {
     const { id } = req.params; // restaurantId
     const { rating, comment } = req.body;
-    const auth = getAuth(req);
+    const { userId } = getAuth(req)
 
-    if (!auth.userId) {
+    if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
 
@@ -50,7 +50,7 @@ const newReview = async (req, res) => {
     // }
 
     const reviewDoc = await Rating.create({
-      userId: auth.userId,
+      userId: userId,
       restaurantId: id,
       rating,
       review: comment,
