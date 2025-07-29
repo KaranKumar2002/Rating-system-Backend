@@ -7,7 +7,7 @@ import mongoose from "mongoose";
 // Create a new user
 const newUser = async (req, res) => {
   try {
-    const { userId } = getAuth(req);
+    const userId = req.auth.userId;
 
     const currentUser = await clerkClient.users.getUser(userId);
     const name = currentUser.firstName + ' ' + currentUser.lastName;
@@ -33,7 +33,7 @@ const newReview = async (req, res) => {
   try {
     const { id } = req.params; // restaurantId
     const { rating, comment } = req.body;
-    const { userId } = getAuth(req)
+    const userId = req.auth.userId;
 
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
