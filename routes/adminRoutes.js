@@ -5,7 +5,7 @@ import { requireAuth } from "@clerk/express";
 const router = Router();
 
 
-router.route('/addnewRestaurant').post(upload.single('image'),requireAuth(), newRestaurant)
+router.route('/addnewRestaurant').post(upload.single('image'),newRestaurant)
 router.route('/deleteRestaurant/:id').delete(deleteRestaurant);
 router.route('/getAllRestaurants').get(getAllRestaurants)
 
