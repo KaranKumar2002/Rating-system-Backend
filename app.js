@@ -4,15 +4,15 @@ import { clerkMiddleware } from '@clerk/express'
 import cors from 'cors';
 const app = express();
 
-clerkClient.authenticateRequest(req, {
-  authorizedParties: ['https://rating-system-frontend.vercel.app'],
-})
 
 app.use(express.json());
 app.use(cors({
   origin: ['http://localhost:5173', 'https://rating-system-frontend.vercel.app'],
   credentials: true,
 }));
+clerkMiddleware({
+  authorizedParties: ['https://rating-system-frontend.vercel.app', 'http://localhost:5173'],
+})
 
 import userRoutes from './routes/userRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
