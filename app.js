@@ -4,7 +4,9 @@ import { clerkMiddleware } from '@clerk/express'
 import cors from 'cors';
 const app = express();
 
-// app.use(clerkMiddleware());
+clerkClient.authenticateRequest(req, {
+  authorizedParties: ['https://rating-system-frontend.vercel.app'],
+})
 
 app.use(express.json());
 app.use(cors({
