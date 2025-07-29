@@ -6,7 +6,7 @@ const router = Router();
 
 
 router.route('/addnewRestaurant').post(upload.single('image'),requireAuth(), newRestaurant)
-router.route('/deleteRestaurant/:id').delete(requireAuth(), deleteRestaurant);
+router.route('/deleteRestaurant/:id').delete(deleteRestaurant);
 router.route('/getAllRestaurants').get(getAllRestaurants)
 
 
